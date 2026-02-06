@@ -393,9 +393,6 @@ function scapeshot_scripts() {
 	// Theme block stylesheet.
 	wp_enqueue_style( 'scapeshot-block-style', get_theme_file_uri( 'assets/css/blocks.css' ), array( 'scapeshot-style' ), '1.0' );
 
-	// Load the html5 shiv.
-	wp_enqueue_script( 'scapeshot-html5',  get_theme_file_uri( $path . 'html5' . $min . '.js' ), array(), '3.7.3' );
-	wp_script_add_data( 'scapeshot-html5', 'conditional', 'lt IE 9' );
 
 	wp_enqueue_script( 'scapeshot-skip-link-focus-fix', get_theme_file_uri( $path . 'skip-link-focus-fix' . $min . '.js' ), array(), '201800703', true );
 
