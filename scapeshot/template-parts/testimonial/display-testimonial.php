@@ -24,8 +24,11 @@ $jetpack_defaults = array(
 // Get Jetpack options for testimonial.
 $jetpack_options = get_theme_mod( 'jetpack_testimonials', $jetpack_defaults );
 
-$scapeshot_title    = get_option( 'jetpack_testimonial_title', esc_html__( 'Testimonials', 'scapeshot' ) );
-$scapeshot_description = get_option( 'jetpack_testimonial_content' );
+// Jetpack 14.2+ stores archive title/content as a theme_mod array (jetpack_testimonials).
+// Fall back to the old flat WP option for sites that have not migrated yet.
+$jetpack_testimonials = (array) get_theme_mod( 'jetpack_testimonials', array() );
+$scapeshot_title    = ! empty( $jetpack_testimonials['page-title'] ) ? $jetpack_testimonials['page-title'] : get_option( 'jetpack_testimonial_title', esc_html__( 'Testimonials', 'scapeshot' ) );
+$scapeshot_description = ! empty( $jetpack_testimonials['page-content'] ) ? $jetpack_testimonials['page-content'] : get_option( 'jetpack_testimonial_content' );
 
 if( ! $scapeshot_title && ! $scapeshot_description ) {
  	$scapeshot_classes[] = 'no-section-heading';
